@@ -1,0 +1,832 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rashid — Founder, BEEZY Solutions</title>
+  <meta name="description" content="Rashid — entrepreneur, business consultant and founder of BEEZY Solutions and Hot Deals Kochi." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,800;0,900;1,400;1,700;1,800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            serif: ['"Playfair Display"', 'Georgia', 'serif'],
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+          },
+          colors: { ink: '#000000', paper: '#FFFFFF', line: '#E5E5E5', coal: '#1A1A1A' },
+        },
+      },
+    };
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.3.1/umd/react.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.3.1/umd/react-dom.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.26.4/babel.min.js"></script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { background: #FFFFFF; color: #000000; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+    ::selection { background: #000; color: #fff; }
+    .mono-img { filter: grayscale(1) contrast(1.25); }
+    .font-serif { font-feature-settings: "lnum" 1; }
+
+    /* Scroll reveal — only hides content once JS has confirmed it can reveal it */
+    .anim .reveal { opacity: 0.35; transform: translateY(20px); transition: opacity .9s cubic-bezier(.2,.7,.2,1), transform .9s cubic-bezier(.2,.7,.2,1); }
+    .anim .reveal.in { opacity: 1; transform: none; }
+
+    /* Ticker */
+    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    .marquee { animation: marquee 40s linear infinite; }
+    .marquee-wrap:hover .marquee { animation-play-state: paused; }
+
+    /* Outlined numerals */
+    .outline-num { color: transparent; -webkit-text-stroke: 1px #000; }
+    .outline-num-w { color: transparent; -webkit-text-stroke: 1px #fff; }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .marquee { animation: none; }
+      .anim .reveal { opacity: 1; transform: none; transition: none; }
+    }
+  </style>
+</head>
+<body class="font-sans">
+<div id="root"></div>
+
+<script type="text/babel" data-presets="react">
+/* =====================================================================
+   SITE CONFIG — every word, image, link and venture lives here.
+   Items marked TODO still need your real links / details.
+   Images go in ./images/ — a missing image shows a monochrome placeholder.
+   ===================================================================== */
+const SITE = {
+  name: "Rashid",
+
+  nav: [
+    { label: "About", href: "#story" },
+    { label: "Ventures", href: "#ventures" },
+    { label: "Thought Leadership", href: "#beliefs" },
+    { label: "Connect", href: "#contact" },
+  ],
+  navCta: { label: "Let's Talk", href: "#contact" },
+
+  hero: {
+    eyebrow: "Entrepreneur · Business Consultant · Founder",
+    // Headline is split into parts so one phrase can be set in italic.
+    headline: [
+      { text: "Hi, I'm Rashid." },
+      { text: "I build businesses," },
+      { text: "and I help others build theirs.", italic: true },
+    ],
+    subheadline: "Founder of BEEZY Solutions and Hot Deals Kochi. I help businesses grow, and I'm building the next set of ideas for a changing world.",
+    portrait: { src: "./images/portrait.jpg", alt: "Portrait of Rashid", position: "50% 12%" }, // position = crop focal point
+    caption: ["Rashid", "Kochi, India"],
+    sideLabel: "Founder — BEEZY Solutions",
+    badge: { value: "350+", label: "Brands worked with" },
+    primaryCta: { label: "Read My Story", href: "#story" },
+    secondaryCta: { label: "Have a Project? Let's Talk", href: "#contact" },
+  },
+
+  // Scrolling ticker under the hero
+  ticker: ["India", "Saudi Arabia", "UAE", "Egypt", "UK", "Australia", "Digital Marketing", "Performance Marketing", "Branding", "Video Production", "Website Development", "Business Consulting"],
+
+  stats: [
+    { value: 350, suffix: "+", label: "Brands worked with" },
+    { value: 6, suffix: "+", label: "Countries: India, Saudi Arabia, UAE, Egypt, UK, Australia" },
+    { value: 6, suffix: "+", label: "Ventures live and on the way" },
+  ],
+
+  story: {
+    eyebrow: "My Story",
+    heading: "It started in my father's restaurant in Saudi Arabia.",
+    pullQuote: "That restaurant was my first classroom.",
+    // Short timeline drawn from the story — edit freely
+    timeline: [
+      { place: "Saudi Arabia", note: "11 years of childhood. Working in my father's restaurant from around 10." },
+      { place: "Malappuram → Kochi", note: "Moved to study a BBA and break out of my comfort zone." },
+      { place: "Small businesses", note: "My own ventures, across different sectors." },
+      { place: "BEEZY Solutions", note: "Launched during my BBA. 350+ brands in 3 years." },
+      { place: "Next: the GCC", note: "Where my story began." },
+    ],
+    intro: [
+      "I spent 11 years of my childhood in Saudi Arabia. I was around 10 when I started working in my father's restaurant there. He's a businessman, and that restaurant was my first classroom.",
+      "I learned how to talk to customers. I learned that people come back to a place where they're treated well. I watched my father handle money, stock, suppliers and bad days, and still open the doors the next morning.",
+      "Later, I left Malappuram and moved to Kochi to study a BBA (Bachelor of Business Administration). I wanted to break out of my comfort zone and explore new opportunities. But what I know about business didn't come from a degree or a classroom. It came from doing business, starting in my father's own restaurant.",
+    ],
+    chapters: [
+      {
+        title: "From small businesses to real ones",
+        paragraphs: [
+          "As I grew up, I started small businesses of my own, across different sectors. Some were tiny. Some were risky. Every one of them taught me something new about people, money and patience.",
+          "One by one, they started to work. And I noticed something. The businesses that grew weren't always the ones with the best product. They were the ones people knew about and trusted.",
+        ],
+      },
+      {
+        title: "Why I started BEEZY Solutions",
+        paragraphs: [
+          "That lesson became BEEZY Solutions, my digital marketing and business consulting company. I launched it while I was still doing my BBA.",
+          "I wanted to give other business owners what I had to learn the hard way: how to get seen, how to sell, and how to build systems that let a business grow without the owner doing everything.",
+          "Over the last 3 years, we've worked with 350+ brands across India, Saudi Arabia, the UAE, Egypt, the UK and Australia.",
+        ],
+      },
+      {
+        title: "Where I am now",
+        paragraphs: [
+          "I'm still that kid from my father's restaurant, just with bigger plans. Today I'm a full-time entrepreneur, with my own company and a strong team behind me. Together, we're building new ventures in education, real estate and youth empowerment workshops. Next, I plan to take my own businesses into the GCC, where my story began.",
+          "And I'm always open to your next good idea.",
+        ],
+      },
+    ],
+  },
+
+  beliefs: {
+    eyebrow: "What I Believe",
+    heading: "A few things the restaurant taught me",
+    items: [
+      { title: "People first.", text: "Every business is really about people: customers, staff and partners. Treat them well and the numbers follow." },
+      { title: "Know your numbers.", text: "Passion starts a business. Numbers keep it alive." },
+      { title: "Build systems, not dependence.", text: "A business that can't run without you is a job, not a business." },
+      { title: "Keep learning.", text: "The world changes fast, especially now with AI. I'd rather learn early than catch up late." },
+      { title: "Help others grow.", text: "The best part of my work is watching someone else's business take off." },
+    ],
+  },
+
+  ventures: {
+    eyebrow: "My Ventures",
+    heading: "What I'm building",
+    items: [
+      {
+        name: "BEEZY Solutions",
+        role: "Digital marketing and business consulting",
+        description: "We help businesses get seen, get leads and grow. From strategy to execution, we handle the work that brings customers through the door.",
+        services: ["Digital marketing", "Performance marketing", "Branding", "Video production", "Website development", "Business consulting"],
+        proof: "350+ brands. 6+ countries. 3 years.",
+        cta: { label: "Visit BEEZY Solutions", href: "#" }, // TODO: link
+        logo: "./images/beezy-solutions.png",
+        monogram: "BS",
+        featured: true,
+      },
+      {
+        name: "Hot Deals Kochi",
+        role: "",
+        // TODO: confirm this line — it's the example from your content doc
+        description: "Kochi's go-to page for the best deals, offers and new openings in the city.",
+        proof: "2+ years and growing.",
+        cta: { label: "Follow Hot Deals Kochi", href: "#" }, // TODO: link
+        logo: "./images/hot-deals-kochi.png",
+        monogram: "HD",
+      },
+      {
+        name: "ROF Global",
+        role: "Business networking",
+        description: "A business networking platform that brings business owners, founders and professionals together to share ideas, find partners and grow.",
+        cta: { label: "Join ROF Global", href: "#" }, // TODO: link
+        logo: "./images/rof-global.png",
+        monogram: "RG",
+      },
+      {
+        name: "Behind the Founder",
+        role: "Real stories of the people behind the brands",
+        description: "Every brand has a founder, and every founder has a story. Behind the Founder showcases those journeys, the struggles and the lessons, so others can learn from them and feel inspired to start.",
+        cta: { label: "Watch the Stories", href: "#" }, // TODO: link
+        logo: "./images/behind-the-founder.png",
+        monogram: "BF",
+      },
+    ],
+  },
+
+  comingSoon: {
+    eyebrow: "Coming Soon",
+    heading: "What's next",
+    intro: "The world is changing fast. These are the ventures I'm building for what comes next.",
+    items: [
+      {
+        name: "BEEZY Productions",
+        tag: "Video production for the digital age",
+        text: "Videos made to perform: Meta-optimised ads, brand films and AI-powered videos that stop the scroll and bring results.",
+        thumb: "./images/beezy-productions.jpg",
+      },
+      {
+        name: "BEEZY Academy",
+        tag: "A sales and marketing academy",
+        text: "AI is changing how people work, and many are losing jobs because of it. BEEZY Academy teaches the skills that keep you valuable: sales, marketing, and how to use AI instead of being replaced by it. This isn't just a course. It's a movement to help people take back control of their careers.",
+        thumb: "./images/beezy-academy.jpg",
+      },
+      {
+        name: "Real Estate Venture (name to be revealed)",
+        tag: "Finding the right property, made simple",
+        text: "A real estate company built on trust, helping people find the right property without the usual confusion.",
+        thumb: "./images/real-estate.jpg",
+      },
+      {
+        name: "Youth Empowerment Workshops (upcoming)",
+        tag: "Career skills for the next generation",
+        text: "Practical workshops for young people on cracking interviews, presenting themselves with confidence, and getting ready for the working world.",
+        thumb: "./images/youth-workshops.jpg",
+      },
+    ],
+    cta: { label: "Get Notified When We Launch", href: "#notify" },
+  },
+
+  contact: {
+    eyebrow: "Have a Project in Mind?",
+    heading: "Got an idea? Let's build it together.",
+    text: "Some of my best work started with a simple conversation. If you have a new business idea, a project you want to launch, or a business that's ready for its next stage, I'd love to hear about it.",
+    listTitle: "Reach out to me for:",
+    reasons: [
+      "New business ideas and partnerships",
+      "Growing or scaling an existing business",
+      "Brand collaborations",
+      "Speaking at events and workshops",
+    ],
+    fields: [
+      { name: "name", label: "Name", type: "text", required: true },
+      { name: "phone", label: "Phone / WhatsApp", type: "tel", required: true },
+      { name: "email", label: "Email", type: "email", required: true },
+      { name: "project", label: "What's your project about?", type: "textarea", required: true },
+    ],
+    button: "Let's Talk",
+    // If formAction is set (e.g. a Formspree/Getform URL) the form POSTs there.
+    // Otherwise it opens the visitor's email app addressed to connect.email.
+    formAction: "",
+    careersNote: "Looking for a job? This page is for projects and partnerships. For careers, please contact the BEEZY Solutions team at",
+    careersLink: { label: "[careers email or careers page link]", href: "#" }, // TODO
+  },
+
+  connect: {
+    eyebrow: "Connect With Me",
+    heading: "Let's stay connected",
+    text: "I share what I learn about business, marketing and growth almost every day. Follow along.",
+    email: "", // TODO: your email, e.g. "hello@example.com"
+    socials: [
+      { name: "Instagram", href: "#", icon: "instagram" }, // TODO
+      { name: "LinkedIn", href: "#", icon: "linkedin" },   // TODO
+      { name: "Facebook", href: "#", icon: "facebook" },   // TODO
+      { name: "YouTube", href: "#", icon: "youtube" },     // TODO
+      { name: "WhatsApp", href: "#", icon: "whatsapp" },   // TODO: "https://wa.me/91XXXXXXXXXX"
+      { name: "Email", href: "#", icon: "email" },         // TODO: "mailto:you@example.com"
+    ],
+    subscribeLabel: "Subscribe for Updates",
+    subscribePlaceholder: "Your email address",
+    subscribeButton: "Notify Me",
+    subscribeAction: "", // TODO: newsletter provider form URL
+  },
+
+  footer: {
+    line1: "Rashid · Founder, BEEZY Solutions",
+    line2: "Built in Kochi. Working with the world.",
+    copyright: "© 2026 Rashid. All rights reserved.",
+  },
+};
+/* ===================================================================== */
+
+const { useState, useEffect, useRef } = React;
+const pad = n => String(n).padStart(2, "0");
+const reducedMotion = () => window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+/* ---------- hooks ---------- */
+function useReveal() {
+  useEffect(() => {
+    if (!("IntersectionObserver" in window) || reducedMotion()) return;
+    document.documentElement.classList.add("anim");
+    const io = new IntersectionObserver(entries => entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+    }), { rootMargin: "0px 0px -8% 0px", threshold: 0.08 });
+    document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+    return () => io.disconnect();
+  }, []);
+}
+
+function useScrollState(ids) {
+  const [progress, setProgress] = useState(0);
+  const [active, setActive] = useState("");
+  const [scrolled, setScrolled] = useState(false);
+  useEffect(() => {
+    const onScroll = () => {
+      const h = document.documentElement;
+      const max = h.scrollHeight - h.clientHeight;
+      setProgress(max > 0 ? h.scrollTop / max : 0);
+      setScrolled(h.scrollTop > 40);
+      let cur = "";
+      ids.forEach(id => { const el = document.getElementById(id); if (el && el.getBoundingClientRect().top < 160) cur = id; });
+      setActive(cur);
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => { window.removeEventListener("scroll", onScroll); window.removeEventListener("resize", onScroll); };
+  }, []);
+  return { progress, active, scrolled };
+}
+
+function CountUp({ value, suffix = "" }) {
+  const ref = useRef(null);
+  const [n, setN] = useState(value);
+  useEffect(() => {
+    if (!("IntersectionObserver" in window) || reducedMotion()) return;
+    setN(0);
+    const io = new IntersectionObserver(([e]) => {
+      if (!e.isIntersecting) return;
+      io.disconnect();
+      const t0 = performance.now(), dur = 1400;
+      const tick = t => {
+        const p = Math.min(1, (t - t0) / dur);
+        setN(Math.round(value * (1 - Math.pow(1 - p, 3))));
+        if (p < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    }, { threshold: 0.4 });
+    io.observe(ref.current);
+    return () => io.disconnect();
+  }, [value]);
+  return <span ref={ref} className="tabular-nums">{n}{suffix}</span>;
+}
+
+/* ---------- primitives ---------- */
+function MonoImage({ src, alt, label, className = "", position }) {
+  const [failed, setFailed] = useState(false);
+  if (failed || !src) {
+    return (
+      <div role="img" aria-label={alt || label}
+        className={`flex items-center justify-center bg-[repeating-linear-gradient(45deg,#fff_0_10px,#E5E5E5_10px_11px)] ${className}`}>
+        {label && <span className="border border-black bg-white px-2 py-1 text-[10px] font-medium uppercase tracking-[0.2em]">{label}</span>}
+      </div>
+    );
+  }
+  return <img src={src} alt={alt} onError={() => setFailed(true)}
+    style={position ? { objectPosition: position } : undefined} className={`mono-img object-cover ${className}`} />;
+}
+
+const Label = ({ children, className = "" }) => (
+  <p className={`text-[11px] font-medium uppercase tracking-[0.25em] ${className}`}>{children}</p>
+);
+
+const btnBase = "group inline-flex items-center justify-center gap-3 border px-7 py-4 text-xs font-medium uppercase tracking-[0.2em] transition-colors duration-300 focus:outline-none focus-visible:ring-1 focus-visible:ring-offset-2";
+const btnStyles = {
+  primary: "border-black bg-black text-white hover:bg-white hover:text-black focus-visible:ring-black",
+  secondary: "border-black bg-white text-black hover:bg-black hover:text-white focus-visible:ring-black",
+  inverse: "border-white bg-white text-black hover:bg-black hover:text-white focus-visible:ring-white",
+};
+const Arrow = () => <span aria-hidden="true" className="transition-transform duration-300 group-hover:translate-x-1">→</span>;
+function Button({ href, children, variant = "primary", className = "" }) {
+  return <a href={href} className={`${btnBase} ${btnStyles[variant]} ${className}`}>{children}<Arrow /></a>;
+}
+const TextLink = ({ href, children, light }) => (
+  <a href={href} className={`group inline-flex items-center gap-2 border-b pb-1 text-[11px] font-medium uppercase tracking-[0.22em] ${light ? "border-white" : "border-current"}`}>{children}<Arrow /></a>
+);
+
+function SectionTitle({ index, eyebrow, heading, light, className = "" }) {
+  return (
+    <div className={`reveal ${className}`}>
+      <div className={`flex items-baseline justify-between border-b pb-4 ${light ? "border-white" : "border-black"}`}>
+        <Label className="font-semibold">{eyebrow}</Label>
+        <span className="font-serif text-sm italic">§ {index}</span>
+      </div>
+      <h2 className="mt-7 font-serif text-[34px] font-black uppercase leading-[1] tracking-tight sm:text-5xl">{heading}</h2>
+    </div>
+  );
+}
+
+function Icon({ name }) {
+  const p = { width: 18, height: 18, viewBox: "0 0 24 24", "aria-hidden": true };
+  const f = { ...p, fill: "currentColor" };
+  const st = { ...p, fill: "none", stroke: "currentColor", strokeWidth: 1.8, strokeLinecap: "round", strokeLinejoin: "round" };
+  switch (name) {
+    case "instagram": return <svg {...st}><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.6" fill="currentColor"/></svg>;
+    case "linkedin": return <svg {...f}><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.1c.5-1 1.8-2 3.8-2 4 0 4.8 2.6 4.8 6V21h-4v-5.6c0-1.3 0-3-1.9-3s-2.2 1.5-2.2 3V21H9z"/></svg>;
+    case "facebook": return <svg {...f}><path d="M13.5 22v-8.2h2.8l.4-3.2h-3.2V8.5c0-.9.3-1.6 1.6-1.6h1.7V4.1c-.3 0-1.3-.1-2.5-.1-2.5 0-4.1 1.5-4.1 4.2v2.4H7.4v3.2h2.8V22z"/></svg>;
+    case "youtube": return <svg {...f}><path d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12a31 31 0 0 0 .5 4.8 3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .5-4.8 31 31 0 0 0-.5-4.8zM9.8 15.1V8.9l5.8 3.1z"/></svg>;
+    case "whatsapp": return <svg {...st}><path d="M3.5 20.5l1.3-4.2A8.5 8.5 0 1 1 8 19.4z"/><path d="M9 8.5c0 3.5 2.8 6.5 6.5 6.5l1-1.6-2-1-.9.9a4.7 4.7 0 0 1-2.4-2.4l.9-.9-1-2z" fill="currentColor" stroke="none"/></svg>;
+    case "email": return <svg {...st}><rect x="3" y="5" width="18" height="14"/><path d="M3 6l9 7 9-7"/></svg>;
+    default: return null;
+  }
+}
+
+/* ---------- sections ---------- */
+function Header() {
+  const [open, setOpen] = useState(false);
+  const ids = SITE.nav.map(n => n.href.slice(1));
+  const { progress, active, scrolled } = useScrollState(ids);
+  return (
+    <header style={{ top: "env(safe-area-inset-top, 0px)" }} className="sticky z-40 border-b border-black bg-white/95 backdrop-blur">
+      <div className={`mx-auto flex max-w-7xl items-center justify-between px-4 transition-all duration-300 sm:px-8 ${scrolled ? "py-3" : "py-5"}`}>
+        <a href="#top" className="font-serif text-2xl font-black tracking-tight sm:text-[28px]">{SITE.name}<span aria-hidden="true">.</span></a>
+        <nav className="hidden lg:block" aria-label="Primary">
+          <ul className="flex items-center gap-9">
+            {SITE.nav.map(n => {
+              const on = active === n.href.slice(1);
+              return (
+                <li key={n.label}>
+                  <a href={n.href} aria-current={on ? "true" : undefined}
+                    className="group relative py-1 text-[11px] font-medium uppercase tracking-[0.25em]">
+                    {n.label}
+                    <span aria-hidden="true" className={`absolute -bottom-0.5 left-0 h-px bg-black transition-all duration-300 ${on ? "w-full" : "w-0 group-hover:w-full"}`} />
+                  </a>
+                </li>
+              );
+            })}
+            <li><a href={SITE.navCta.href} className={`${btnBase} ${btnStyles.primary} px-5 py-2.5 text-[10px]`}>{SITE.navCta.label}</a></li>
+          </ul>
+        </nav>
+        <button className="border border-black px-3 py-2 text-[11px] font-medium uppercase tracking-[0.2em] lg:hidden"
+          aria-expanded={open} aria-controls="mobile-nav" onClick={() => setOpen(!open)}>{open ? "Close" : "Menu"}</button>
+      </div>
+      {open && (
+        <nav id="mobile-nav" className="border-t border-black lg:hidden" aria-label="Mobile">
+          {SITE.nav.map((n, i) => (
+            <a key={n.label} href={n.href} onClick={() => setOpen(false)}
+              className="flex items-baseline justify-between border-b border-line px-4 py-5 font-serif text-2xl font-bold uppercase">
+              {n.label}<span className="font-serif text-sm italic font-normal">{pad(i + 1)}</span>
+            </a>
+          ))}
+          <a href={SITE.navCta.href} onClick={() => setOpen(false)} className="block bg-black px-4 py-5 text-center text-xs font-medium uppercase tracking-[0.25em] text-white">{SITE.navCta.label} →</a>
+        </nav>
+      )}
+      <div aria-hidden="true" className="absolute bottom-[-1px] left-0 h-[2px] bg-black" style={{ width: `${progress * 100}%` }} />
+    </header>
+  );
+}
+
+function Hero() {
+  const h = SITE.hero;
+  return (
+    <section className="border-b border-black">
+      <div className="mx-auto grid max-w-7xl gap-14 px-4 pb-16 pt-12 sm:px-8 md:pb-24 md:pt-16 lg:grid-cols-12 lg:gap-12">
+        <div className="flex flex-col justify-center lg:col-span-7">
+          <Label className="reveal mb-8 flex items-center gap-4"><span className="h-px w-10 shrink-0 bg-black" />{h.eyebrow}</Label>
+          <h1 className="reveal font-serif text-[40px] font-black uppercase leading-[0.98] tracking-[-0.02em] sm:text-6xl xl:text-[76px]">
+            {h.headline.map((part, i) => (
+              <span key={i} className={`block ${part.italic ? "font-normal italic normal-case tracking-[-0.01em]" : ""}`}>{part.text}</span>
+            ))}
+          </h1>
+          <div className="reveal mt-10 flex gap-6">
+            <span className="mt-3 hidden h-px w-16 shrink-0 bg-black sm:block" />
+            <p className="max-w-lg text-base font-light leading-relaxed text-coal sm:text-lg">{h.subheadline}</p>
+          </div>
+          <div className="reveal mt-10 flex flex-col gap-4 sm:flex-row">
+            <Button href={h.primaryCta.href}>{h.primaryCta.label}</Button>
+            <Button href={h.secondaryCta.href} variant="secondary">{h.secondaryCta.label}</Button>
+          </div>
+        </div>
+        <div className="reveal relative lg:col-span-5">
+          <figure className="relative border border-black p-3 sm:p-4">
+            <div className="overflow-hidden border border-black">
+              <MonoImage src={h.portrait.src} alt={h.portrait.alt} label="Founder Portrait" position={h.portrait.position}
+                className="aspect-[4/5] w-full transition-transform duration-[1.2s] ease-out hover:scale-[1.03]" />
+            </div>
+            <figcaption className="mt-3 flex justify-between text-[10px] font-medium uppercase tracking-[0.25em]">
+              <span>{h.caption[0]}</span><span>{h.caption[1]}</span>
+            </figcaption>
+            {/* stat badge */}
+            <div className="absolute -left-3 -top-5 border border-black bg-black px-5 py-4 text-white sm:-left-8">
+              <p className="font-serif text-3xl font-black leading-none">{h.badge.value}</p>
+              <p className="mt-1.5 text-[9px] font-medium uppercase tracking-[0.25em]">{h.badge.label}</p>
+            </div>
+          </figure>
+          {/* vertical side label */}
+          <p aria-hidden="true" className="absolute -right-9 top-1/2 hidden -translate-y-1/2 whitespace-nowrap text-[10px] font-medium uppercase tracking-[0.35em] xl:block" style={{ writingMode: "vertical-rl" }}>
+            {h.sideLabel}
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Ticker() {
+  const items = [...SITE.ticker, ...SITE.ticker];
+  return (
+    <div className="marquee-wrap overflow-hidden border-b border-black bg-black py-4 text-white" aria-label={SITE.ticker.join(", ")}>
+      <div className="marquee flex w-max" aria-hidden="true">
+        {items.map((t, i) => (
+          <span key={i} className="flex items-center whitespace-nowrap font-serif text-xl italic sm:text-2xl">
+            <span className="px-7">{t}</span><span className="text-sm not-italic">✦</span>
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function Stats() {
+  return (
+    <section aria-label="At a glance" className="border-b border-black">
+      <dl className="mx-auto grid max-w-7xl sm:grid-cols-3">
+        {SITE.stats.map((s, i) => (
+          <div key={i} className={`reveal group px-4 py-10 transition-colors duration-300 hover:bg-black hover:text-white sm:px-8 sm:py-14 ${i > 0 ? "border-t border-black sm:border-l sm:border-t-0" : ""}`}>
+            <div className="flex items-start justify-between">
+              <dd className="font-serif text-6xl font-black tracking-tight sm:text-7xl"><CountUp value={s.value} suffix={s.suffix} /></dd>
+              <span className="font-serif text-sm italic">{pad(i + 1)}</span>
+            </div>
+            <dt className="mt-4 max-w-[17rem] text-[11px] font-medium uppercase leading-relaxed tracking-[0.2em] opacity-80">{s.label}</dt>
+          </div>
+        ))}
+      </dl>
+    </section>
+  );
+}
+
+function Story() {
+  const s = SITE.story;
+  return (
+    <section id="story" className="scroll-mt-16 border-b border-black">
+      <div className="mx-auto grid max-w-7xl gap-12 px-4 py-20 sm:px-8 md:py-28 lg:grid-cols-12 lg:gap-16">
+        <aside className="lg:col-span-5">
+          <div className="lg:sticky lg:top-28">
+            <SectionTitle index="01" eyebrow={s.eyebrow} heading={s.heading} />
+            <ol className="reveal mt-12 border-l border-black">
+              {s.timeline.map((t, i) => (
+                <li key={t.place} className="relative pb-7 pl-7 last:pb-0">
+                  <span className={`absolute -left-[5px] top-1.5 h-[9px] w-[9px] border border-black ${i === s.timeline.length - 1 ? "bg-white" : "bg-black"}`} />
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.22em]">{t.place}</p>
+                  <p className="mt-1 text-sm leading-relaxed text-coal">{t.note}</p>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </aside>
+        <div className="lg:col-span-7">
+          <div className="reveal space-y-6 text-[17px] font-light leading-[1.85] text-coal">
+            {s.intro.map((p, i) => (
+              <p key={i} className={i === 0 ? "first-letter:float-left first-letter:mr-3 first-letter:mt-1.5 first-letter:font-serif first-letter:text-[76px] first-letter:font-black first-letter:leading-[0.75] first-letter:text-black" : ""}>{p}</p>
+            ))}
+          </div>
+          <blockquote className="reveal my-14 border-y border-black py-10 text-center">
+            <span aria-hidden="true" className="block font-serif text-6xl leading-none">“</span>
+            <p className="mx-auto max-w-xl font-serif text-3xl italic leading-tight sm:text-[42px]">{s.pullQuote}</p>
+          </blockquote>
+          {s.chapters.map((c, i) => (
+            <article key={c.title} className={`reveal ${i ? "mt-14" : ""} grid gap-4 sm:grid-cols-[72px_1fr]`}>
+              <span className="outline-num font-serif text-5xl font-black leading-none sm:text-6xl">{pad(i + 1)}</span>
+              <div>
+                <h3 className="font-serif text-2xl font-bold leading-tight sm:text-[30px]">{c.title}</h3>
+                <div className="mt-5 space-y-5 text-[17px] font-light leading-[1.85] text-coal">
+                  {c.paragraphs.map((p, j) => <p key={j} className={j === c.paragraphs.length - 1 && i === s.chapters.length - 1 ? "font-serif text-2xl italic font-normal text-black" : ""}>{p}</p>)}
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Beliefs() {
+  const b = SITE.beliefs;
+  return (
+    <section id="beliefs" className="scroll-mt-16 border-b border-black bg-black text-white">
+      <div className="mx-auto max-w-7xl px-4 py-20 sm:px-8 md:py-28">
+        <SectionTitle index="02" eyebrow={b.eyebrow} heading={b.heading} light className="max-w-4xl" />
+        <ol className="mt-14 grid border-l border-t border-coal sm:grid-cols-2 lg:grid-cols-5">
+          {b.items.map((it, i) => (
+            <li key={it.title} className="reveal group flex min-h-[260px] flex-col border-b border-r border-coal p-6 transition-colors duration-300 hover:bg-white hover:text-black sm:p-7"
+              style={{ transitionDelay: `${i * 60}ms` }}>
+              <span className="outline-num-w font-serif text-6xl font-black leading-none group-hover:[-webkit-text-stroke:1px_#000]">{pad(i + 1)}</span>
+              <div className="pt-10">
+                <h3 className="font-serif text-xl font-bold leading-tight">{it.title}</h3>
+                <p className="mt-3 text-sm font-light leading-relaxed opacity-80">{it.text}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+  );
+}
+
+function VentureLogo({ v, light }) {
+  const [failed, setFailed] = useState(false);
+  if (failed || !v.logo) return <span className="font-serif text-xl font-black">{v.monogram}</span>;
+  return <img src={v.logo} alt={`${v.name} logo`} onError={() => setFailed(true)} className={`mono-img h-full w-full object-contain p-2 ${light ? "invert" : ""}`} />;
+}
+
+function VentureCard({ item, i }) {
+  const f = item.featured;
+  return (
+    <li className={`reveal group border p-6 transition-colors duration-300 sm:p-8 ${f ? "border-black bg-black text-white" : "border-line hover:border-black hover:bg-black hover:text-white"}`}>
+      <div className="flex items-start justify-between gap-5">
+        <div className="flex items-center gap-5">
+          <div className={`flex h-16 w-16 shrink-0 items-center justify-center border transition-colors duration-300 ${f ? "border-white" : "border-black group-hover:border-white"}`}>
+            <VentureLogo v={item} light={f} />
+          </div>
+          <div className="min-w-0">
+            <h3 className={`font-serif font-bold leading-tight ${f ? "text-3xl sm:text-4xl" : "text-2xl"}`}>{item.name}</h3>
+            {item.role && <Label className="mt-1.5 leading-relaxed opacity-80">{item.role}</Label>}
+          </div>
+        </div>
+        <span className="font-serif text-sm italic">{pad(i + 1)}</span>
+      </div>
+      <p className={`mt-6 leading-relaxed opacity-90 ${f ? "text-base" : "text-sm"}`}>{item.description}</p>
+      {item.services && (
+        <ul className="mt-6 grid grid-cols-2 border-l border-t border-coal">
+          {item.services.map(s => <li key={s} className="border-b border-r border-coal px-3 py-2.5 text-[10px] font-medium uppercase tracking-[0.18em]">{s}</li>)}
+        </ul>
+      )}
+      <div className={`mt-7 flex flex-wrap items-center justify-between gap-4 border-t pt-5 ${f ? "border-coal" : "border-line group-hover:border-coal"}`}>
+        {item.proof ? <p className="font-serif text-lg italic">{item.proof}</p> : <span />}
+        <TextLink href={item.cta.href}>{item.cta.label}</TextLink>
+      </div>
+    </li>
+  );
+}
+
+function Ventures() {
+  const v = SITE.ventures;
+  return (
+    <div id="ventures" className="scroll-mt-16 px-4 py-20 sm:px-8 md:py-24 lg:pr-12">
+      <SectionTitle index="03" eyebrow={v.eyebrow} heading={v.heading} className="mb-12" />
+      <ul className="space-y-5">
+        {v.items.map((item, i) => <VentureCard key={item.name} item={item} i={i} />)}
+      </ul>
+    </div>
+  );
+}
+
+function ComingSoon() {
+  const c = SITE.comingSoon;
+  return (
+    <div id="next" className="scroll-mt-16 border-t border-black px-4 py-20 sm:px-8 md:py-24 lg:border-t-0 lg:pl-12">
+      <SectionTitle index="04" eyebrow={c.eyebrow} heading={c.heading} />
+      <p className="reveal mt-5 max-w-md font-serif text-xl italic leading-snug">{c.intro}</p>
+      <ul className="mt-10 border-t border-black">
+        {c.items.map((a, i) => (
+          <li key={a.name} className="reveal group flex items-start gap-5 border-b border-line py-8">
+            <div className="relative shrink-0 overflow-hidden border border-black">
+              <MonoImage src={a.thumb} alt="" className="h-24 w-24 transition-transform duration-700 group-hover:scale-105 sm:h-28 sm:w-28" />
+              <span className="absolute left-0 top-0 border-b border-r border-black bg-white px-1.5 py-0.5 font-serif text-xs italic">{pad(i + 1)}</span>
+            </div>
+            <div className="min-w-0">
+              <div className="flex flex-wrap items-center gap-2 text-[10px] font-medium uppercase tracking-[0.2em]">
+                <span className="bg-black px-2 py-0.5 text-white">Coming Soon</span>
+                <span className="text-coal">{a.tag}</span>
+              </div>
+              <h3 className="mt-3 font-serif text-xl font-bold uppercase leading-snug tracking-tight underline-offset-4 group-hover:underline sm:text-[22px]">{a.name}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-coal">{a.text}</p>
+            </div>
+          </li>
+        ))}
+      </ul>
+      <Button href={c.cta.href} className="reveal mt-10 w-full sm:w-auto">{c.cta.label}</Button>
+    </div>
+  );
+}
+
+function Contact() {
+  const c = SITE.contact;
+  const [status, setStatus] = useState("");
+  const onSubmit = e => {
+    if (c.formAction) return;
+    e.preventDefault();
+    const d = Object.fromEntries(new FormData(e.target));
+    const to = SITE.connect.email;
+    if (!to) { setStatus("Thanks! Contact details are being set up — please reach out on social for now."); return; }
+    const body = c.fields.map(f => `${f.label}: ${d[f.name] || ""}`).join("\n");
+    window.location.href = `mailto:${to}?subject=${encodeURIComponent("New project — " + (d.name || ""))}&body=${encodeURIComponent(body)}`;
+    setStatus("Opening your email app…");
+  };
+  const input = "peer w-full border-0 border-b border-black bg-transparent px-0 pb-3 pt-2 text-lg font-light placeholder-transparent focus:border-b-2 focus:outline-none focus:ring-0";
+  return (
+    <section id="contact" className="scroll-mt-16 border-t border-black">
+      <div className="mx-auto max-w-7xl px-4 pt-20 sm:px-8 md:pt-28">
+        <div className="reveal flex items-baseline justify-between border-b border-black pb-4">
+          <Label className="font-semibold">{c.eyebrow}</Label>
+          <span className="font-serif text-sm italic">§ 05</span>
+        </div>
+        <h2 className="reveal mt-8 max-w-5xl font-serif text-[44px] font-black uppercase leading-[0.95] tracking-[-0.02em] sm:text-7xl lg:text-[96px]">{c.heading}</h2>
+      </div>
+      <div className="mx-auto grid max-w-7xl gap-14 px-4 pb-20 pt-14 sm:px-8 md:pb-28 lg:grid-cols-12 lg:gap-16">
+        <div className="reveal lg:col-span-5">
+          <p className="text-lg font-light leading-relaxed text-coal">{c.text}</p>
+          <Label className="mt-10">{c.listTitle}</Label>
+          <ul className="mt-4 border-t border-black">
+            {c.reasons.map((r, i) => (
+              <li key={r} className="flex items-baseline gap-5 border-b border-line py-4">
+                <span className="font-serif text-sm italic">{pad(i + 1)}</span>
+                <span className="text-[15px]">{r}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="reveal lg:col-span-7">
+          <form action={c.formAction || undefined} method="post" onSubmit={onSubmit} className="border border-black p-6 sm:p-10">
+            <div className="grid gap-x-8 gap-y-9 sm:grid-cols-2">
+              {c.fields.map(f => (
+                <div key={f.name} className={`relative ${f.type === "textarea" || f.name === "name" ? "sm:col-span-2" : ""}`}>
+                  {f.type === "textarea"
+                    ? <textarea id={f.name} name={f.name} rows={4} required={f.required} placeholder={f.label} className={`${input} resize-y`} />
+                    : <input id={f.name} name={f.name} type={f.type} required={f.required} placeholder={f.label} className={input} />}
+                  <label htmlFor={f.name}
+                    className="pointer-events-none absolute -top-4 left-0 text-[10px] font-medium uppercase tracking-[0.22em] transition-all peer-placeholder-shown:top-2.5 peer-placeholder-shown:text-sm peer-placeholder-shown:normal-case peer-placeholder-shown:tracking-normal peer-placeholder-shown:text-neutral-500 peer-focus:-top-4 peer-focus:text-[10px] peer-focus:uppercase peer-focus:tracking-[0.22em] peer-focus:text-black">
+                    {f.label}
+                  </label>
+                </div>
+              ))}
+            </div>
+            <button type="submit" className={`${btnBase} ${btnStyles.primary} mt-10 w-full sm:w-auto`}>{c.button}<Arrow /></button>
+            {status && <p role="status" className="mt-4 text-sm">{status}</p>}
+          </form>
+          <p className="mt-5 text-xs leading-relaxed text-coal">
+            {c.careersNote} <a href={c.careersLink.href} className="underline underline-offset-2">{c.careersLink.label}</a>.
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function ConnectBar() {
+  const c = SITE.connect;
+  const [done, setDone] = useState(false);
+  const onSubmit = e => { if (!c.subscribeAction) { e.preventDefault(); setDone(true); } };
+  // TODO: until subscribeAction is set, sign-ups are not saved anywhere
+  return (
+    <section id="connect" className="scroll-mt-16 border-y border-black">
+      <div className="mx-auto grid max-w-7xl lg:grid-cols-12">
+        <div className="reveal border-b border-black px-4 py-14 sm:px-8 lg:col-span-6 lg:border-b-0 lg:border-r">
+          <Label className="font-semibold">{c.eyebrow}</Label>
+          <h2 className="mt-4 font-serif text-4xl font-black uppercase tracking-tight">{c.heading}</h2>
+          <p className="mt-3 max-w-md text-sm leading-relaxed text-coal">{c.text}</p>
+          <ul className="mt-8 grid grid-cols-6 border-l border-t border-black sm:max-w-md">
+            {c.socials.map(s => (
+              <li key={s.name} className="border-b border-r border-black">
+                <a href={s.href} target={s.href.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer" aria-label={s.name} title={s.name}
+                  className="flex aspect-square items-center justify-center transition-colors duration-300 hover:bg-black hover:text-white">
+                  <Icon name={s.icon} />
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div id="notify" className="reveal scroll-mt-16 flex flex-col justify-center px-4 py-14 sm:px-8 lg:col-span-6">
+          <Label className="font-semibold">{c.subscribeLabel}</Label>
+          <p className="mt-3 font-serif text-2xl italic">{SITE.comingSoon.cta.label}</p>
+          <form action={c.subscribeAction || undefined} method="post" onSubmit={onSubmit} className="mt-7 flex flex-col sm:flex-row">
+            <label htmlFor="sub-email" className="sr-only">Email address</label>
+            <input id="sub-email" name="email" type="email" required placeholder={c.subscribePlaceholder}
+              className="min-w-0 flex-1 border border-black bg-white px-5 py-4 text-sm placeholder:text-neutral-500 focus:outline-none focus:ring-1 focus:ring-black sm:border-r-0" />
+            <button type="submit" className={`${btnBase} ${btnStyles.primary}`}>{c.subscribeButton}</button>
+          </form>
+          {done && <p role="status" className="mt-4 text-sm">Thanks! Sign-ups open soon. Follow along on social in the meantime.</p>}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Footer() {
+  const f = SITE.footer;
+  return (
+    <footer className="overflow-hidden bg-black text-white">
+      <div className="mx-auto max-w-7xl px-4 pt-14 sm:px-8">
+        <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <p className="font-serif text-xl font-bold">{f.line1}</p>
+            <p className="mt-1 font-serif text-lg italic opacity-80">{f.line2}</p>
+          </div>
+          <a href="#top" className="group inline-flex self-start sm:self-auto items-center gap-2 border-b border-white pb-1 text-[10px] font-medium uppercase tracking-[0.25em]">
+            Back to top <span aria-hidden="true" className="transition-transform group-hover:-translate-y-1">↑</span>
+          </a>
+        </div>
+      </div>
+      <p aria-hidden="true" className="select-none whitespace-nowrap text-center font-serif font-black uppercase leading-[0.8] tracking-[-0.04em]"
+        style={{ fontSize: "clamp(80px, 23.5vw, 340px)", margin: "0.15em 0 0", paddingBottom: "0.12em" }}>
+        {SITE.name}
+      </p>
+      <div className="border-t border-coal">
+        <p className="mx-auto max-w-7xl px-4 py-5 text-[10px] font-medium uppercase tracking-[0.25em] opacity-80 sm:px-8">{f.copyright}</p>
+      </div>
+    </footer>
+  );
+}
+
+function App() {
+  useReveal();
+  return (
+    <div id="top" className="min-h-screen bg-white text-black">
+      <a href="#story" className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:bg-black focus:px-4 focus:py-2 focus:text-white">Skip to content</a>
+      <Header />
+      <main>
+        <Hero />
+        <Ticker />
+        <Stats />
+        <Story />
+        <Beliefs />
+        <section className="mx-auto grid max-w-7xl lg:grid-cols-2 lg:divide-x lg:divide-black">
+          <Ventures />
+          <ComingSoon />
+        </section>
+        <Contact />
+        <ConnectBar />
+      </main>
+      <Footer />
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+</script>
+</body>
+</html>
