@@ -233,7 +233,7 @@ const SITE = {
 
   footer: {
     line1: "Rashid · Founder, BEEZY Solutions",
-    line2: "Built in Kochi. Working with the world.",
+    line2: "", // optional second footer line (removed at the client's request)
     copyright: "© 2026 Rashid. All rights reserved.",
   },
 };

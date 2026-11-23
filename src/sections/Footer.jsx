@@ -9,7 +9,7 @@ export default function Footer() {
         <div className="reveal flex flex-col gap-8 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <p className="text-[12px] font-medium uppercase tracking-[0.32em]">{f.line1}</p>
-            <p className="mt-3 font-serif text-[28px] italic sm:text-[36px]">{f.line2}</p>
+            {f.line2 && <p className="mt-3 font-serif text-[28px] italic sm:text-[36px]">{f.line2}</p>}
           </div>
           <a href="#top" className={`group inline-flex items-center gap-3 self-start text-[12px] font-medium uppercase tracking-[0.3em] sm:self-auto ${focusRing}`}>
             Back to top <Arrow up />
