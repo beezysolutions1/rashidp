@@ -42,7 +42,7 @@ export default function Hero() {
         <span aria-hidden="true" className="pointer-events-none absolute inset-4 border border-paper sm:inset-6" />
         <figcaption className="absolute inset-x-4 bottom-4 flex justify-between gap-4 whitespace-nowrap px-4 py-5 text-[11px] font-medium uppercase tracking-[0.2em] text-paper sm:inset-x-6 sm:bottom-6 sm:px-6 sm:text-[12px] sm:tracking-[0.3em]">
           <span>{h.caption[0]}</span>
-          <span>{h.caption[1]}</span>
+          {h.caption[1] && <span>{h.caption[1]}</span>}
         </figcaption>
       </figure>
     </section>

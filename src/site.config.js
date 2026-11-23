@@ -45,7 +45,7 @@ const SITE = {
     subheadline: "Founder of BEEZY Solutions. I help businesses grow, and I'm building the next set of ideas for a changing world.",
     // Source photo lives in /assets; `npm run build` makes optimised AVIF/WebP/JPEG sizes from it.
     portrait: { name: "portrait", alt: "Portrait of Rashid", position: "50% 12%", width: 1333, height: 2000 }, // position = crop focal point
-    caption: ["Kochi, India", "Founder, BEEZY Solutions"],
+    caption: ["", "Founder, BEEZY Solutions"], // [bottom-left, bottom-right] on the portrait; "" hides one
     primaryCta: { label: "Read My Story", href: "#story" },
     secondaryCta: { label: "Have a Project? Let's Talk", href: "#contact" },
   },
