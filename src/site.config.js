@@ -144,7 +144,7 @@ const SITE = {
         name: "ROF Global",
         role: "Business networking",
         description: "A business networking platform that brings business owners, founders and professionals together to share ideas, find partners and grow.",
-        cta: { label: "Join ROF Global", href: "#" }, // TODO: link
+        cta: { label: "Join ROF Global", href: "https://rofglobal.in/" },
         logo: "", // TODO: e.g. "/images/rof-global.png" once the file is in public/images
         monogram: "RG",
       },
