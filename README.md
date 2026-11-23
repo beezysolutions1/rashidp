@@ -43,7 +43,7 @@ filter spam bots, and show sending / success / error states.
 
 Any static host works. Build command `npm run build`, output directory `dist`.
 (Netlify, Vercel, Cloudflare Pages and GitHub Pages all detect this automatically.)
-Set `seo.url` to the final domain so link previews use absolute image URLs.
+Live at https://rashid.beezysolutions.com (`seo.url` in the config). The build also writes `sitemap.xml` and points `robots.txt` at it.
 
 ## Project structure
 

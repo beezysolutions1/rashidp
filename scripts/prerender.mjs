@@ -52,5 +52,13 @@ const head = [
 const file = "dist/index.html";
 const html = readFileSync(file, "utf8").replace("<!--head-->", head).replace("<!--app-->", render());
 writeFileSync(file, html);
+
+// Sitemap + robots pointer, once the live address is known.
+if (site) {
+  const today = new Date().toISOString().slice(0, 10);
+  writeFileSync("dist/sitemap.xml",
+    `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n  <url><loc>${site}/</loc><lastmod>${today}</lastmod></url>\n</urlset>\n`);
+  writeFileSync("dist/robots.txt", `User-agent: *\nAllow: /\n\nSitemap: ${site}/sitemap.xml\n`);
+}
 rmSync("dist-ssr", { recursive: true, force: true });
 console.log(`[prerender] wrote ${file} (${(html.length / 1024).toFixed(1)} KB)`);

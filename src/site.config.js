@@ -14,7 +14,7 @@ const SITE = {
   seo: {
     title: "Rashid — Entrepreneur & Founder of BEEZY Solutions",
     description: "Founder of BEEZY Solutions. I help businesses grow, and I'm building the next set of ideas for a changing world.",
-    url: "", // TODO: your live domain, e.g. "https://rashid.com" (used for canonical + share image URLs)
+    url: "https://rashid.beezysolutions.com", // live address — used for canonical, share image URLs and the sitemap
     locale: "en_IN",
     twitterHandle: "", // TODO: e.g. "@yourhandle"
   },
