@@ -103,7 +103,7 @@ const SITE = {
 
   beliefs: {
     eyebrow: "What I Believe",
-    heading: "A few things the restaurant taught me",
+    heading: "What my business journey taught me",
     items: [
       { title: "People first.", text: "Every business is really about people: customers, staff and partners. Treat them well and the numbers follow." },
       { title: "Know your numbers.", text: "Passion starts a business. Numbers keep it alive." },
